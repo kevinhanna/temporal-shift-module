@@ -5,8 +5,19 @@
 
 import os
 
-ROOT_DATASET = '/ssd/video/'  # '/data/jilin/'
+ROOT_DATASET = '/data/'  # '/data/jilin/'
 
+
+def return_w251fall(modality):
+    filename_categories = 'w251fall/labels/categories.txt'
+    if modality == 'RGB':
+        root_data = ROOT_DATASET + 'w251fall/jpg'
+        filename_imglist_train = 'w251fall/file_list/w251fall_rgb_train_split_1.txt'
+        filename_imglist_val = 'w251fall/file_list/w251fall_rgb_val_split_1.txt'
+        prefix = 'img_{:05d}.jpg'
+    else:
+        raise NotImplementedError('no such modality:' + modality)
+    return filename_categories, filename_imglist_train, filename_imglist_val, root_data, prefix
 
 def return_ucf101(modality):
     filename_categories = 'UCF101/labels/classInd.txt'
@@ -104,7 +115,7 @@ def return_kinetics(modality):
 def return_dataset(dataset, modality):
     dict_single = {'jester': return_jester, 'something': return_something, 'somethingv2': return_somethingv2,
                    'ucf101': return_ucf101, 'hmdb51': return_hmdb51,
-                   'kinetics': return_kinetics }
+                   'kinetics': return_kinetics, 'w251fall': return_w251fall }
     if dataset in dict_single:
         file_categories, file_imglist_train, file_imglist_val, root_data, prefix = dict_single[dataset](modality)
     else:

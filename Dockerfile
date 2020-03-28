@@ -11,3 +11,5 @@ RUN git clone https://github.com/kevinhanna/temporal-shift-module
 RUN apt-get update
 RUN apt-get install -y ffmpeg vim
 
+WORKDIR /workdir/temporal-shift-module
+

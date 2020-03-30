@@ -75,5 +75,5 @@ if __name__ == "__main__":
     for class_name in class_list:
         class_process(dir_path, dst_dir_path, class_name)
 
-    class_name = 'test'
-    class_process(dir_path, dst_dir_path, class_name)
+    #class_name = 'test'
+    #class_process(dir_path, dst_dir_path, class_name)

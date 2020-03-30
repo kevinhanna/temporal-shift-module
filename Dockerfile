@@ -5,11 +5,11 @@ RUN pip install torch==1.2.0 torchvision==0.4.0 -f https://download.pytorch.org/
 RUN pip install tensorboardX numpy scikit-learn matplotlib pandas tqdm Pillow==6.1
 RUN pip install jupyterlab
 
-WORKDIR /workdir
-RUN git clone https://github.com/kevinhanna/temporal-shift-module 
-
 RUN apt-get update
 RUN apt-get install -y ffmpeg vim
+
+WORKDIR /workdir
+RUN git clone https://github.com/kevinhanna/temporal-shift-module 
 
 WORKDIR /workdir/temporal-shift-module
 

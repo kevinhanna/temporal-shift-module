@@ -27,7 +27,7 @@ if __name__ == '__main__':
         for cat in categories_raw:
             categories.append(cat.rstrip().split(' '))
 
-    assert len(categories) == 5
+    assert len(categories) == 9
     dict_categories = {}
     for category in categories:
         dict_categories[category[0]] = category[1]

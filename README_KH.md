@@ -31,7 +31,7 @@ The the script:
 
 ### Create train and validation sets
 
-**TODO**
+`python tools/gen_label_w251fall.py`
 
 ### Transfer learn on Fall data
 

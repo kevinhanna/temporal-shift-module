@@ -39,6 +39,16 @@ Run `fall_train.sh`
 
 Checkpoint ends up in ``
 
+## Test
+
+```
+# test TSN using non-local testing protocol
+python test_models.py w251fall \
+    --weights=checkpoint/TSM_w251fall_RGB_resnet50_shift8_blockres_avg_segment8_e25/ckpt.best.pth.tar  \
+    --test_segments=8 --test_crops=3 \
+    --batch_size=2 --dense_sample --full_res
+```
+**Batch size is only set to 2, 4 causes OOM error***
 
 ### Jupyter Lab
 

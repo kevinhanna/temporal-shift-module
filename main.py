@@ -100,8 +100,9 @@ def main():
 
         new_sd = dict()
         for k, v in sd.items():
-            name = "module."+k # remove `module.`
-            new_sd[name] = v
+            if k not in ['base_model.classifier.weight', 'base_model.classifier.bias']:
+                name = "module."+k
+                new_sd[name] = v
 
         sd = new_sd
 

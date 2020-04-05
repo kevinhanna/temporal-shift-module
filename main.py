@@ -97,12 +97,16 @@ def main():
         print(("=> fine-tuning from '{}'".format(args.tune_from)))
         sd = torch.load(args.tune_from)
         sd = sd['state_dict']
-        old_model_dict = model.state_dict()
 
-        model_dict = dict()
-        for k, v in old_model_dict.items():
-            name = k[7:] # remove `module.`
-            new_state_dict[name] = v
+        new_sd = dict()
+        for k, v in sd.items():
+            name = "module."+k # remove `module.`
+            new_sd[name] = v
+
+        sd = new_sd
+
+        model_dict = model.state_dict()
+
 
         replace_dict = []
         for k, v in sd.items():

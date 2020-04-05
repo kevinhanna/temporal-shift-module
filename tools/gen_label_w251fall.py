@@ -50,11 +50,19 @@ if __name__ == '__main__':
     train = []
     val = []
 
+    # for dir in directories:
+    #     if random.random() <= train_split_ratio:
+    #         train.append(dir)
+    #     else:
+    #         val.append(dir)
+
     for dir in directories:
-        if random.random() <= train_split_ratio:
+        if '.train.avi' in dir:
             train.append(dir)
-        else:
+        elif '.val.avi':
             val.append(dir)
+        else:
+            print ("Directory not train or validation: {}".format(dir))
 
     # Write files.
     with open(os.path.join(sets_path, train_file), 'w') as f:

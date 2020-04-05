@@ -73,6 +73,10 @@ class AverageMeter(object):
 def accuracy(output, target, topk=(1,)):
     """Computes the precision@k for the specified values of k"""
     maxk = max(topk)
+#    if target[0] ==target[1]:
+#        print('\ntarget:',target)
+#    else:
+#        print('\ntarget:',target, 'output:', output,)
     batch_size = target.size(0)
     _, pred = output.topk(maxk, 1, True, True)
     pred = pred.t()
@@ -286,10 +290,11 @@ for i, data_label_pairs in enumerate(zip(*data_iter_list)):
                                                               float(cnt_time) / (i+1) / args.batch_size, top1.avg, top5.avg))
 
 video_pred = [np.argmax(x[0]) for x in output]
+#print('\n\nvideo_pred:\n', video_pred)
 video_pred_top5 = [np.argsort(np.mean(x[0], axis=0).reshape(-1))[::-1][:5] for x in output]
-
+print('\n\nvideo_pred_top5:\n',video_pred_top5)
 video_labels = [x[1] for x in output]
-
+print('\n\nvideo_labels:\n', video_labels)
 
 if args.csv_file is not None:
     print('=> Writing result to csv file: {}'.format(args.csv_file))
@@ -314,7 +319,7 @@ if args.csv_file is not None:
 
 
 cf = confusion_matrix(video_labels, video_pred).astype(float)
-
+print ('Confusion Matrix:\n', cf)
 np.save('cm.npy', cf)
 cls_cnt = cf.sum(axis=1)
 cls_hit = np.diag(cf)

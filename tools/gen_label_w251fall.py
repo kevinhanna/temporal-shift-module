@@ -39,12 +39,12 @@ if __name__ == '__main__':
         # Check for dir for category
         if os.path.isdir(os.path.join(dataset_path, category)):
             video_dirs = [ name for name in os.listdir(os.path.join(dataset_path, category)) if os.path.isdir(os.path.join(dataset_path, category, name)) ]
-            print(video_dirs)
+            #print(video_dirs)
             for vid_dir in video_dirs:
                 file_count = len([name for name in os.listdir(os.path.join(dataset_path, category, vid_dir)) if os.path.isfile(os.path.join(dataset_path, category, vid_dir, name))])
                 directories.append([os.path.join(dataset_path, category, vid_dir), str(file_count), category_id])
 
-    #print(directories)
+    print(directories)
 
     # Split to train and val
     train = []
@@ -57,12 +57,18 @@ if __name__ == '__main__':
     #         val.append(dir)
 
     for dir in directories:
-        if '.train.avi' in dir:
+        #SM if '.train.avi' in dir:
+        #SM print(dir[0])
+        if '.train' in dir[0]:
+            #SM print(dir)
             train.append(dir)
-        elif '.val.avi':
+        #SM elif '.val.avi':
+        elif '.val' in dir[0]:
             val.append(dir)
         else:
             print ("Directory not train or validation: {}".format(dir))
+    
+    random.shuffle(train)
 
     # Write files.
     with open(os.path.join(sets_path, train_file), 'w') as f:

@@ -227,13 +227,7 @@ def main():
                 'best_prec1': best_prec1,
             }, is_best)
 
-            save_model({
-                'epoch': epoch + 1,
-                'arch': args.arch,
-                'state_dict': model,
-                'optimizer': optimizer.state_dict(),
-                'best_prec1': best_prec1,
-            }, is_best)
+            save_model(model, is_best)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, log, tf_writer):
